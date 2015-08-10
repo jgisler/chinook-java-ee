@@ -1,4 +1,4 @@
-package org.gislers.chinook.dao.vo;
+package org.gislers.chinook.dao.model;
 
 public interface IColumn {
 
