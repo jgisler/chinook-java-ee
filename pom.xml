@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.gislers</groupId>
+    <groupId>org.gislers.chinook</groupId>
     <artifactId>chinook-java-ee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -17,6 +17,7 @@
         <module>chinook-db</module>
         <module>chinook-rest-api</module>
         <module>chinook-dao</module>
+        <module>chinook-entities</module>
     </modules>
 
     <scm>
@@ -27,14 +28,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java-version>1.8</java-version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
-        <org.springframework-version>4.2.0.RELEASE</org.springframework-version>
-        <org.slf4j-version>1.7.5</org.slf4j-version>
-        <jackson.databind-version>2.2.3</jackson.databind-version>
-        <springframework-version>4.2.0.RELEASE</springframework-version>
-        <log4j-version>1.2.17</log4j-version>
-        <junit-version>4.12</junit-version>
+        <java.version>1.8</java.version>
+        <hibernate.version>5.0.0.Final</hibernate.version>
+        <hibernate.tools.version>4.3.1.CR1</hibernate.tools.version>
+        <mysql.connector.version>5.1.36</mysql.connector.version>
+        <org.slf4j.version>1.7.5</org.slf4j.version>
+        <jackson.databind.version>2.2.3</jackson.databind.version>
+        <springframework.version>4.2.0.RELEASE</springframework.version>
+        <spring.data.jpa.version>1.8.2.RELEASE</spring.data.jpa.version>
+        <log4j.version>1.2.17</log4j.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <build>
@@ -54,6 +57,11 @@
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -65,12 +73,12 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <version>${org.springframework-version}</version>
+                <version>${springframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>${org.springframework-version}</version>
+                <version>${springframework.version}</version>
                 <exclusions>
                     <!-- Exclude Commons Logging in favor of SLF4j -->
                     <exclusion>
@@ -82,24 +90,31 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <version>${org.springframework-version}</version>
+                <version>${springframework.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>1.8.2.RELEASE</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>${org.springframework-version}</version>
+                <version>${springframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>${org.springframework-version}</version>
+                <version>${springframework.version}</version>
             </dependency>
 
             <!--MySQL JDBC driver-->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.36</version>
+                <version>${mysql.connector.version}</version>
             </dependency>
 
             <!--JPA/Hibernate dependencies-->
@@ -114,6 +129,11 @@
                 <version>${hibernate.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-tools</artifactId>
+                <version>${hibernate.tools.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.hibernate.javax.persistence</groupId>
                 <artifactId>hibernate-jpa-2.0-api</artifactId>
                 <version>1.0.1.Final</version>
@@ -123,24 +143,22 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${org.slf4j-version}</version>
+                <version>${org.slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
-                <version>${org.slf4j-version}</version>
-                <scope>runtime</scope>
+                <version>${org.slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>${org.slf4j-version}</version>
-                <scope>runtime</scope>
+                <version>${org.slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
-                <version>${log4j-version}</version>
+                <version>${log4j.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>javax.mail</groupId>
@@ -159,20 +177,19 @@
                         <artifactId>jmxri</artifactId>
                     </exclusion>
                 </exclusions>
-                <scope>runtime</scope>
             </dependency>
 
             <!-- Test -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>${junit-version}</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${springframework-version}</version>
+                <version>${springframework.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
