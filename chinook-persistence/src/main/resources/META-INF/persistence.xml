@@ -1,0 +1,20 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="chinook.jpa" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistenceProvider</provider>
+        <class>org.gislers.chinook.persistence.entities.Album</class>
+        <class>org.gislers.chinook.persistence.entities.Artist</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://thor.gislers.org:3306/Chinook" />
+            <property name="hibernate.default_schema" value="Chinook" />
+            <property name="hibernate.connection.password" value="chinook_user" />
+            <property name="hibernate.connection.username" value="chinook_user" />
+        </properties>
+    </persistence-unit>
+    
+</persistence>
