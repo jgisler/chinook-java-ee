@@ -1,7 +1,7 @@
 package org.gislers.chinook.persistence.config;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,8 +16,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
@@ -25,6 +25,8 @@ import javax.sql.DataSource;
 @ComponentScan("org.gislers.chinook.persistence")
 @PropertySource("classpath:META-INF/application.properties")
 public class AppConfig {
+
+    private static final Logger logger = LoggerFactory.getLogger( AppConfig.class );
 
     @Autowired
     private Environment env;
@@ -34,25 +36,16 @@ public class AppConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean(destroyMethod = "close")
-    public DataSource dataSource(){
-        HikariConfig dataSourceConfig = new HikariConfig();
-        dataSourceConfig.setDriverClassName(getEnvProp("db.driver"));
-        dataSourceConfig.setJdbcUrl(getEnvProp("db.url"));
-        dataSourceConfig.setUsername(getEnvProp("db.username"));
-        dataSourceConfig.setPassword(getEnvProp("db.password"));
-        return new HikariDataSource(dataSourceConfig);
+    @Bean
+    public JpaVendorAdapter vendorAdapter() {
+        return new HibernateJpaVendorAdapter();
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setPersistenceUnitName("chinook-pu");
-        em.setDataSource(dataSource);
-        em.setPackagesToScan(new String[]{"org.gislers.chinook.persistence.entities"});
-
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
+        em.setPersistenceXmlLocation("META-INF/persistence.xml");
+        em.setJpaVendorAdapter(vendorAdapter());
         return em;
     }
 
