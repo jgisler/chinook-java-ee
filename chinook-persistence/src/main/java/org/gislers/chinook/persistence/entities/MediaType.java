@@ -5,25 +5,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * Created by jim on 8/29/15.
+ * Created by jim on 9/6/15.
  */
 @Entity
-public class Artist extends BaseEntity {
+public class MediaType extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private int artistId;
-    private String name;
+    private Integer mediaTypeId;
+    private String  name;
 
-    public Artist() {
+    public MediaType() {
     }
 
-    public int getArtistId() {
-        return artistId;
+    public Integer getMediaTypeId() {
+        return mediaTypeId;
     }
 
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
+    public void setMediaTypeId(Integer mediaTypeId) {
+        this.mediaTypeId = mediaTypeId;
     }
 
     public String getName() {
@@ -36,8 +36,8 @@ public class Artist extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Artist{");
-        sb.append("artistId=").append(artistId);
+        final StringBuilder sb = new StringBuilder("MediaType{");
+        sb.append("mediaTypeId=").append(mediaTypeId);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();

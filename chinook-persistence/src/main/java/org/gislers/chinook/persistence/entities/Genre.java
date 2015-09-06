@@ -5,25 +5,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * Created by jim on 8/29/15.
+ * Created by jim on 9/6/15.
  */
 @Entity
-public class Artist extends BaseEntity {
+public class Genre extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private int artistId;
+    private Integer genreId;
+
     private String name;
 
-    public Artist() {
+    public Genre() {
     }
 
-    public int getArtistId() {
-        return artistId;
+    public Integer getGenreId() {
+        return genreId;
     }
 
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
+    public void setGenreId(Integer genreId) {
+        this.genreId = genreId;
     }
 
     public String getName() {
@@ -36,8 +37,8 @@ public class Artist extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Artist{");
-        sb.append("artistId=").append(artistId);
+        final StringBuilder sb = new StringBuilder("Genre{");
+        sb.append("genreId=").append(genreId);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();

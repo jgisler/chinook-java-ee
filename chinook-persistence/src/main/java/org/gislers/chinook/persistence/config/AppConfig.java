@@ -55,12 +55,4 @@ public class AppConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-
-    int getIntegerEnvProp(String name) {
-        return Integer.parseInt(getEnvProp(name));
-    }
-
-    String getEnvProp( String name ) {
-        return env.getRequiredProperty(name);
-    }
 }

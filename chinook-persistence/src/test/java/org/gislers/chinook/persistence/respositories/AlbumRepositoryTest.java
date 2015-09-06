@@ -17,34 +17,35 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jim on 8/31/15.
  */
-
 public class AlbumRepositoryTest extends BaseRepositoryTest {
 
     private static final Logger logger = LoggerFactory.getLogger(AlbumRepositoryTest.class);
 
     @Autowired
-    private AlbumRepository albumRepository;
+    private AlbumRepository repository;
 
     @Test
     public void testFind() {
-        Optional<Album> albumOptional = albumRepository.findOne(1);
-        assertTrue(albumOptional.isPresent());
-        assertEquals(1, albumOptional.get().getAlbumId());
-        assertEquals("For Those About To Rock We Salute You", albumOptional.get().getTitle());
-        assertEquals(1, albumOptional.get().getArtistId());
+        Optional<Album> optional = repository.findOne(1);
+        assertTrue(optional.isPresent());
+
+        Album album = optional.get();
+        assertEquals(new Integer(1), album.getAlbumId());
+        assertEquals("For Those About To Rock We Salute You", album.getTitle());
+        assertEquals(new Integer(1), album.getArtistId());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<Album> albumOptional = albumRepository.findOne(99999);
+        Optional<Album> albumOptional = repository.findOne(99999);
         assertFalse(albumOptional.isPresent());
     }
 
     @Test
     public void testFindAll() throws Exception {
-        List<Album> albumList = albumRepository.findAll();
+        List<Album> albumList = repository.findAll();
         for( Album album : albumList ) {
-            logger.info( album.toString() );
+            logger.debug( album.toString() );
         }
         assertNotNull( albumList );
     }

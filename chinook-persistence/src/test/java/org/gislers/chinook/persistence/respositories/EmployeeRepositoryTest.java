@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.entities.Artist;
+import org.gislers.chinook.persistence.entities.Employee;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,37 +15,38 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by jim on 9/5/15.
+ * Created by jim on 9/6/15.
  */
-public class ArtistRepositoryTest extends BaseRepositoryTest {
+public class EmployeeRepositoryTest extends BaseRepositoryTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(ArtistRepositoryTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeRepositoryTest.class);
 
     @Autowired
-    private ArtistRepository repository;
+    private EmployeeRepository repository;
 
     @Test
     public void testFind() {
-        Optional<Artist> optional = repository.findOne(1);
+        Optional<Employee> optional = repository.findOne(1);
         assertTrue(optional.isPresent());
 
-        Artist artist = optional.get();
-        assertEquals(1, artist.getArtistId());
-        assertEquals("AC/DC", artist.getName());
+        Employee employee = optional.get();
+        assertEquals(new Integer(1), employee.getEmployeeId());
+        assertEquals("11120 Jasper Ave NW", employee.getAddress());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<Artist> optional = repository.findOne(99999);
+        Optional<Employee> optional = repository.findOne(99999);
         assertFalse(optional.isPresent());
     }
 
     @Test
     public void testFindAll() throws Exception {
-        List<Artist> list = repository.findAll();
-        for( Artist artist : list ) {
-            logger.debug( artist.toString() );
-        }
+        List<Employee> list = repository.findAll();
         assertNotNull( list );
+
+        for( Employee item : list ) {
+            logger.debug( item.toString() );
+        }
     }
 }

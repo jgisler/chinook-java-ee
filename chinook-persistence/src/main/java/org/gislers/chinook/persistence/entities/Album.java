@@ -12,18 +12,18 @@ public class Album extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private int albumId;
-    private String title;
-    private int artistId;
+    private Integer albumId;
+    private String  title;
+    private Integer artistId;
 
     public Album() {
     }
 
-    public int getAlbumId() {
+    public Integer getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(int albumId) {
+    public void setAlbumId(Integer albumId) {
         this.albumId = albumId;
     }
 
@@ -35,11 +35,11 @@ public class Album extends BaseEntity {
         this.title = title;
     }
 
-    public int getArtistId() {
+    public Integer getArtistId() {
         return artistId;
     }
 
-    public void setArtistId(int artistId) {
+    public void setArtistId(Integer artistId) {
         this.artistId = artistId;
     }
 

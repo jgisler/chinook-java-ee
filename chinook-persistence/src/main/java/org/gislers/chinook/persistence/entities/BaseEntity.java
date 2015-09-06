@@ -5,6 +5,6 @@ import java.io.Serializable;
 /**
  * Created by jim on 8/28/15.
  */
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
 
 }

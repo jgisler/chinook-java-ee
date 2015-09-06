@@ -9,10 +9,19 @@
 
         <class>org.gislers.chinook.persistence.entities.Album</class>
         <class>org.gislers.chinook.persistence.entities.Artist</class>
+        <class>org.gislers.chinook.persistence.entities.Customer</class>
+        <class>org.gislers.chinook.persistence.entities.Employee</class>
+        <class>org.gislers.chinook.persistence.entities.Genre</class>
+        <class>org.gislers.chinook.persistence.entities.Invoice</class>
+        <class>org.gislers.chinook.persistence.entities.InvoiceLine</class>
+        <class>org.gislers.chinook.persistence.entities.MediaType</class>
+        <class>org.gislers.chinook.persistence.entities.Playlist</class>
+        <class>org.gislers.chinook.persistence.entities.PlaylistTrack</class>
+        <class>org.gislers.chinook.persistence.entities.Track</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.show_sql" value="false" />
         </properties>
 
     </persistence-unit>
