@@ -34,7 +34,6 @@
                 <executions>
                     <execution>
                         <id>load-schema</id>
-                        <phase>install</phase>
                         <goals>
                             <goal>execute</goal>
                         </goals>
