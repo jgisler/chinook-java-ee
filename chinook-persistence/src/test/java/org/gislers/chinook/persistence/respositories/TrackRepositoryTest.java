@@ -4,8 +4,8 @@ import org.gislers.chinook.persistence.respositories.entities.Track;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.ejb.EJB;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class TrackRepositoryTest extends BaseRepositoryTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TrackRepositoryTest.class);
 
-    @Autowired
+    @EJB
     private TrackRepository repository;
 
     @Test

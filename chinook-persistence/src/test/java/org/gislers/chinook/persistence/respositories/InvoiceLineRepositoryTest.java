@@ -4,8 +4,8 @@ import org.gislers.chinook.persistence.respositories.entities.InvoiceLine;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +22,7 @@ public class InvoiceLineRepositoryTest extends BaseRepositoryTest {
 
     private static final Logger logger = LoggerFactory.getLogger(InvoiceLineRepositoryTest.class);
 
-    @Autowired
+    @Inject
     private InvoiceLineRepository repository;
 
     @Test
