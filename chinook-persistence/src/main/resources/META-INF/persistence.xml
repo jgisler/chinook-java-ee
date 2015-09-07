@@ -4,24 +4,25 @@
 
     <persistence-unit name="chinook.jpa" transaction-type="RESOURCE_LOCAL">
 
-        <provider>org.hibernate.ejb.HibernatePersistenceProvider</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <non-jta-data-source>jdbc/ChinookDS</non-jta-data-source>
 
-        <class>org.gislers.chinook.persistence.entities.Album</class>
-        <class>org.gislers.chinook.persistence.entities.Artist</class>
-        <class>org.gislers.chinook.persistence.entities.Customer</class>
-        <class>org.gislers.chinook.persistence.entities.Employee</class>
-        <class>org.gislers.chinook.persistence.entities.Genre</class>
-        <class>org.gislers.chinook.persistence.entities.Invoice</class>
-        <class>org.gislers.chinook.persistence.entities.InvoiceLine</class>
-        <class>org.gislers.chinook.persistence.entities.MediaType</class>
-        <class>org.gislers.chinook.persistence.entities.Playlist</class>
-        <class>org.gislers.chinook.persistence.entities.PlaylistTrack</class>
-        <class>org.gislers.chinook.persistence.entities.Track</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Album</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Artist</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Customer</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Employee</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Genre</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Invoice</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.InvoiceLine</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.MediaType</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Playlist</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.PlaylistTrack</class>
+        <class>org.gislers.chinook.persistence.respositories.entities.Track</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="false" />
         </properties>
 
     </persistence-unit>

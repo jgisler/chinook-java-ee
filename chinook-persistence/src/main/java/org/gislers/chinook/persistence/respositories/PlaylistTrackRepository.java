@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.entities.PlaylistTrack;
+import org.gislers.chinook.persistence.respositories.entities.PlaylistTrack;
 
 /**
  * Created by jim on 8/31/15.

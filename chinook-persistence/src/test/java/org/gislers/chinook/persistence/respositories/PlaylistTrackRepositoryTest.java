@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.entities.PlaylistTrack;
+import org.gislers.chinook.persistence.respositories.entities.PlaylistTrack;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

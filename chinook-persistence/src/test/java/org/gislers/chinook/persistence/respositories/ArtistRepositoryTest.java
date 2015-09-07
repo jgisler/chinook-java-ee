@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.entities.Artist;
+import org.gislers.chinook.persistence.respositories.entities.Artist;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +23,37 @@ public class ArtistRepositoryTest extends BaseRepositoryTest {
 
     @Autowired
     private ArtistRepository repository;
+
+    @Test
+    public void testSave() {
+
+        // Insert
+        Artist newArtist = new Artist();
+        newArtist.setName("test artist name");
+        newArtist = repository.save( newArtist );
+        assertNotNull(newArtist.getArtistId());
+
+        // Test insert success
+        int artistId = newArtist.getArtistId();
+        Optional<Artist> optional = repository.findOne(artistId);
+        assertTrue(optional.isPresent());
+
+        // Test update
+        Artist updateArtist = optional.get();
+        updateArtist.setName("Test Artist Name 1");
+        repository.save(updateArtist);
+
+        // Test update success
+        artistId = updateArtist.getArtistId();
+        optional = repository.findOne(artistId);
+        assertTrue(optional.isPresent());
+        assertEquals( updateArtist.getName(), optional.get().getName() );
+
+        // Test delete
+        repository.delete(newArtist);
+        optional = repository.findOne(artistId);
+        assertFalse(optional.isPresent());
+    }
 
     @Test
     public void testFind() {

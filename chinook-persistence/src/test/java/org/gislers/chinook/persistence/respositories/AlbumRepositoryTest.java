@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.entities.Album;
+import org.gislers.chinook.persistence.respositories.entities.Album;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +23,20 @@ public class AlbumRepositoryTest extends BaseRepositoryTest {
 
     @Autowired
     private AlbumRepository repository;
+
+    @Test
+    public void testSave() {
+
+        Album album = new Album();
+        album.setArtistId(1);
+        album.setTitle("Test title");
+
+        album = repository.save(album);
+        assertEquals( new Integer(1), album.getArtistId() );
+        assertEquals( "Test title", album.getTitle() );
+
+        repository.delete( album );
+    }
 
     @Test
     public void testFind() {

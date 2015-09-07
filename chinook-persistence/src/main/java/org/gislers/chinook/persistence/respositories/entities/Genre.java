@@ -1,7 +1,8 @@
-package org.gislers.chinook.persistence.entities;
+package org.gislers.chinook.persistence.respositories.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 public class Genre extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer genreId;
 
     private String name;
