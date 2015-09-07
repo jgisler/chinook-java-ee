@@ -1,5 +1,8 @@
 package org.gislers.chinook.persistence.respositories.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -153,5 +156,49 @@ public class Customer extends BaseEntity {
         sb.append(", supportRepId=").append(supportRepId);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        return new EqualsBuilder()
+                .append(customerId, customer.customerId)
+                .append(supportRepId, customer.supportRepId)
+                .append(firstName, customer.firstName)
+                .append(lastName, customer.lastName)
+                .append(company, customer.company)
+                .append(address, customer.address)
+                .append(city, customer.city)
+                .append(state, customer.state)
+                .append(country, customer.country)
+                .append(postalCode, customer.postalCode)
+                .append(phone, customer.phone)
+                .append(fax, customer.fax)
+                .append(email, customer.email)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(customerId)
+                .append(firstName)
+                .append(lastName)
+                .append(company)
+                .append(address)
+                .append(city)
+                .append(state)
+                .append(country)
+                .append(postalCode)
+                .append(phone)
+                .append(fax)
+                .append(email)
+                .append(supportRepId)
+                .toHashCode();
     }
 }

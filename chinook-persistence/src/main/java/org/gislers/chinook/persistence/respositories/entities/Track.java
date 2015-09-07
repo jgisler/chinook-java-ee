@@ -1,5 +1,8 @@
 package org.gislers.chinook.persistence.respositories.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -114,5 +117,41 @@ public class Track extends BaseEntity {
         sb.append(", unitPrice=").append(unitPrice);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Track track = (Track) o;
+
+        return new EqualsBuilder()
+                .append(trackId, track.trackId)
+                .append(name, track.name)
+                .append(albumId, track.albumId)
+                .append(mediaTypeId, track.mediaTypeId)
+                .append(genreId, track.genreId)
+                .append(composer, track.composer)
+                .append(milliseconds, track.milliseconds)
+                .append(bytes, track.bytes)
+                .append(unitPrice, track.unitPrice)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(trackId)
+                .append(name)
+                .append(albumId)
+                .append(mediaTypeId)
+                .append(genreId)
+                .append(composer)
+                .append(milliseconds)
+                .append(bytes)
+                .append(unitPrice)
+                .toHashCode();
     }
 }

@@ -1,5 +1,8 @@
 package org.gislers.chinook.persistence.respositories.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -175,5 +178,53 @@ public class Employee extends BaseEntity {
         sb.append(", email='").append(email).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        return new EqualsBuilder()
+                .append(employeeId, employee.employeeId)
+                .append(reportsTo, employee.reportsTo)
+                .append(firstName, employee.firstName)
+                .append(lastName, employee.lastName)
+                .append(title, employee.title)
+                .append(birthDate, employee.birthDate)
+                .append(hireDate, employee.hireDate)
+                .append(address, employee.address)
+                .append(city, employee.city)
+                .append(state, employee.state)
+                .append(country, employee.country)
+                .append(postalCode, employee.postalCode)
+                .append(phone, employee.phone)
+                .append(fax, employee.fax)
+                .append(email, employee.email)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(employeeId)
+                .append(reportsTo)
+                .append(firstName)
+                .append(lastName)
+                .append(title)
+                .append(birthDate)
+                .append(hireDate)
+                .append(address)
+                .append(city)
+                .append(state)
+                .append(country)
+                .append(postalCode)
+                .append(phone)
+                .append(fax)
+                .append(email)
+                .toHashCode();
     }
 }

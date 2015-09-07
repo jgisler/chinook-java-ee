@@ -1,5 +1,8 @@
 package org.gislers.chinook.persistence.respositories.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,6 +40,37 @@ public class PlaylistTrack extends BaseEntity {
 
     public void setTrackId(Integer trackId) {
         this.trackId = trackId;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PlaylistTrack{");
+        sb.append("playlistId=").append(playlistId);
+        sb.append(", trackId=").append(trackId);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PlaylistTrack that = (PlaylistTrack) o;
+
+        return new EqualsBuilder()
+                .append(playlistId, that.playlistId)
+                .append(trackId, that.trackId)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(playlistId)
+                .append(trackId)
+                .toHashCode();
     }
 
     public static class PlaylistTrackId implements Serializable {

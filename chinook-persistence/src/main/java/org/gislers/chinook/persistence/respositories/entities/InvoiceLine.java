@@ -1,5 +1,8 @@
 package org.gislers.chinook.persistence.respositories.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -73,5 +76,33 @@ public class InvoiceLine extends BaseEntity {
         sb.append(", quantity=").append(quantity);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InvoiceLine that = (InvoiceLine) o;
+
+        return new EqualsBuilder()
+                .append(invoiceLineId, that.invoiceLineId)
+                .append(invoiceId, that.invoiceId)
+                .append(trackId, that.trackId)
+                .append(unitPrice, that.unitPrice)
+                .append(quantity, that.quantity)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(invoiceLineId)
+                .append(invoiceId)
+                .append(trackId)
+                .append(unitPrice)
+                .append(quantity)
+                .toHashCode();
     }
 }
