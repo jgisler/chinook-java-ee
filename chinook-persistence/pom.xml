@@ -22,13 +22,19 @@
                 <artifactId>maven-ejb-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.2.Final</version>
+                <groupId>org.apache.openejb.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
                 <configuration>
-                    <skip>false</skip>
-                    <artifact>${project.artifactId}</artifact>
-                    <filename>chinook-persistence.jar</filename>
+                    <path>target/tomee</path>
+                    <tomeeVersion>1.7.1</tomeeVersion>
+                    <tomeeClassifier>plus</tomeeClassifier>
+                    <debug>false</debug>
+                    <debugPort>5005</debugPort>
+                    <args>-Dfoo=bar</args>
+                    <config>${project.basedir}/src/test/tomee/conf</config>
+                    <libs>
+                        <lib>mysql:mysql-connector-java:5.1.20</lib>
+                    </libs>
                 </configuration>
             </plugin>
         </plugins>
@@ -97,6 +103,11 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
 
         <!--Logging-->
