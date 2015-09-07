@@ -80,6 +80,16 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.openejb.maven</groupId>
+                    <artifactId>tomee-maven-plugin</artifactId>
+                    <version>1.7.1</version>
+                    <configuration>
+                        <tomeeVersion>1.7.1</tomeeVersion>
+                        <tomeeClassifier>plus</tomeeClassifier>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -162,6 +172,12 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.4</version>
             </dependency>
 
             <!-- Logging with SLF4J & LogBack -->
