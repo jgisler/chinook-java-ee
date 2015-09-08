@@ -9,10 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by jim on 9/5/15.
@@ -35,40 +32,38 @@ public class ArtistEntityRepositoryTest extends BaseRepositoryTest {
 
         // Test insert success
         int artistId = newArtistEntity.getArtistId();
-        Optional<ArtistEntity> optional = repository.findOne(artistId);
-        assertTrue(optional.isPresent());
+        ArtistEntity entity = repository.findOne(artistId);
+        assertNotNull(entity);
 
         // Test update
-        ArtistEntity updateArtistEntity = optional.get();
-        updateArtistEntity.setName("Test ArtistEntity Name 1");
-        repository.save(updateArtistEntity);
+        entity.setName("Test ArtistEntity Name 1");
+        repository.save(entity);
 
         // Test update success
-        artistId = updateArtistEntity.getArtistId();
-        optional = repository.findOne(artistId);
-        assertTrue(optional.isPresent());
-        assertEquals( updateArtistEntity.getName(), optional.get().getName() );
+        artistId = entity.getArtistId();
+        entity = repository.findOne(artistId);
+        assertNotNull(entity);
+        assertEquals("Test ArtistEntity Name 1", entity.getName());
 
         // Test delete
         repository.delete(newArtistEntity);
-        optional = repository.findOne(artistId);
-        assertFalse(optional.isPresent());
+        entity = repository.findOne(artistId);
+        assertNull(entity);
     }
 
     @Test
     public void testFind() {
-        Optional<ArtistEntity> optional = repository.findOne(1);
-        assertTrue(optional.isPresent());
+        ArtistEntity entity = repository.findOne(1);
+        assertNotNull(entity);
 
-        ArtistEntity artistEntity = optional.get();
-        assertEquals(1, artistEntity.getArtistId());
-        assertEquals("AC/DC", artistEntity.getName());
+        assertEquals(1, entity.getArtistId());
+        assertEquals("AC/DC", entity.getName());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<ArtistEntity> optional = repository.findOne(99999);
-        assertFalse(optional.isPresent());
+        ArtistEntity entity = repository.findOne(99999);
+        assertNull(entity);
     }
 
     @Test

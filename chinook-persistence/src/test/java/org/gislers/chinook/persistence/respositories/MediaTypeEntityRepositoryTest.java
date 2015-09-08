@@ -9,10 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by jim on 9/6/15.
@@ -26,18 +23,16 @@ public class MediaTypeEntityRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void testFind() {
-        Optional<MediaTypeEntity> optional = repository.findOne(1);
-        assertTrue(optional.isPresent());
-
-        MediaTypeEntity entity = optional.get();
+        MediaTypeEntity entity = repository.findOne(1);
+        assertNotNull(entity);
         assertEquals(new Integer(1), entity.getMediaTypeId());
         assertEquals("MPEG audio file", entity.getName());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<MediaTypeEntity> optional = repository.findOne(99999);
-        assertFalse(optional.isPresent());
+        MediaTypeEntity entity = repository.findOne(99999);
+        assertNull(entity);
     }
 
     @Test

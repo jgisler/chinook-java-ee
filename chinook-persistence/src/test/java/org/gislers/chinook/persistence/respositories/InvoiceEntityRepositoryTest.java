@@ -10,10 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by jim on 9/6/15.
@@ -27,18 +24,16 @@ public class InvoiceEntityRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void testFind() {
-        Optional<InvoiceEntity> optional = repository.findOne(1);
-        assertTrue(optional.isPresent());
-
-        InvoiceEntity entity = optional.get();
+        InvoiceEntity entity = repository.findOne(1);
+        assertNotNull(entity);
         assertEquals(new Integer(1), entity.getInvoiceId());
         assertEquals(new BigDecimal("1.98"), entity.getTotal());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<InvoiceEntity> optional = repository.findOne(99999);
-        assertFalse(optional.isPresent());
+        InvoiceEntity entity = repository.findOne(99999);
+        assertNull(entity);
     }
 
     @Test

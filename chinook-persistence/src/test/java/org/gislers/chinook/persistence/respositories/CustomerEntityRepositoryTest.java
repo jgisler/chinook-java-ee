@@ -9,10 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by jim on 9/6/15.
@@ -26,18 +23,16 @@ public class CustomerEntityRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void testFind() {
-        Optional<CustomerEntity> optional = repository.findOne(1);
-        assertTrue(optional.isPresent());
-
-        CustomerEntity customerEntity = optional.get();
-        assertEquals(1, customerEntity.getCustomerId());
-        assertEquals("Av. Brigadeiro Faria Lima, 2170", customerEntity.getAddress());
+        CustomerEntity entity = repository.findOne(1);
+        assertNotNull(entity);
+        assertEquals(1, entity.getCustomerId());
+        assertEquals("Av. Brigadeiro Faria Lima, 2170", entity.getAddress());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<CustomerEntity> optional = repository.findOne(99999);
-        assertFalse(optional.isPresent());
+        CustomerEntity entity = repository.findOne(99999);
+        assertNull(entity);
     }
 
     @Test

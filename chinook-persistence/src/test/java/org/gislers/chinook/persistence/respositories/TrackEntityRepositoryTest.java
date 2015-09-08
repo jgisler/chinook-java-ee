@@ -9,10 +9,7 @@ import javax.ejb.EJB;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by jim on 9/6/15.
@@ -26,18 +23,16 @@ public class TrackEntityRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void testFind() {
-        Optional<TrackEntity> optional = repository.findOne(1);
-        assertTrue(optional.isPresent());
-
-        TrackEntity entity = optional.get();
+        TrackEntity entity = repository.findOne(1);
+        assertNotNull(entity);
         assertEquals(new Integer(1), entity.getTrackId());
         assertEquals("For Those About To Rock (We Salute You)", entity.getName());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<TrackEntity> optional = repository.findOne(99999);
-        assertFalse(optional.isPresent());
+        TrackEntity entity = repository.findOne(99999);
+        assertNull(entity);
     }
 
     @Test

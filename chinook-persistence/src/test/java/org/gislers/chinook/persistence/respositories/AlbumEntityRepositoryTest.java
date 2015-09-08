@@ -9,10 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by:   jim
@@ -41,19 +38,18 @@ public class AlbumEntityRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void testFind() {
-        Optional<AlbumEntity> optional = repository.findOne(1);
-        assertTrue(optional.isPresent());
+        AlbumEntity entity = repository.findOne(1);
+        assertNotNull(entity);
 
-        AlbumEntity albumEntity = optional.get();
-        assertEquals(new Integer(1), albumEntity.getAlbumId());
-        assertEquals("For Those About To Rock We Salute You", albumEntity.getTitle());
-        assertEquals(new Integer(1), albumEntity.getArtistId());
+        assertEquals(new Integer(1), entity.getAlbumId());
+        assertEquals("For Those About To Rock We Salute You", entity.getTitle());
+        assertEquals(new Integer(1), entity.getArtistId());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<AlbumEntity> albumOptional = repository.findOne(99999);
-        assertFalse(albumOptional.isPresent());
+        AlbumEntity entity = repository.findOne(99999);
+        assertNull(entity);
     }
 
     @Test
