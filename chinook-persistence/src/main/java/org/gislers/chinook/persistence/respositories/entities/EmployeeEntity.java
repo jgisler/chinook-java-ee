@@ -3,17 +3,16 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class Employee extends BaseEntity {
+@Table(name = "employee", schema = "chinook")
+public class EmployeeEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,7 +34,7 @@ public class Employee extends BaseEntity {
     private String fax;
     private String email;
 
-    public Employee() {
+    public EmployeeEntity() {
     }
 
     public Integer getEmployeeId() {
@@ -160,7 +159,7 @@ public class Employee extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Employee{");
+        final StringBuilder sb = new StringBuilder("EmployeeEntity{");
         sb.append("employeeId=").append(employeeId);
         sb.append(", reportsTo=").append(reportsTo);
         sb.append(", firstName='").append(firstName).append('\'');
@@ -186,24 +185,24 @@ public class Employee extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Employee employee = (Employee) o;
+        EmployeeEntity employeeEntity = (EmployeeEntity) o;
 
         return new EqualsBuilder()
-                .append(employeeId, employee.employeeId)
-                .append(reportsTo, employee.reportsTo)
-                .append(firstName, employee.firstName)
-                .append(lastName, employee.lastName)
-                .append(title, employee.title)
-                .append(birthDate, employee.birthDate)
-                .append(hireDate, employee.hireDate)
-                .append(address, employee.address)
-                .append(city, employee.city)
-                .append(state, employee.state)
-                .append(country, employee.country)
-                .append(postalCode, employee.postalCode)
-                .append(phone, employee.phone)
-                .append(fax, employee.fax)
-                .append(email, employee.email)
+                .append(employeeId, employeeEntity.employeeId)
+                .append(reportsTo, employeeEntity.reportsTo)
+                .append(firstName, employeeEntity.firstName)
+                .append(lastName, employeeEntity.lastName)
+                .append(title, employeeEntity.title)
+                .append(birthDate, employeeEntity.birthDate)
+                .append(hireDate, employeeEntity.hireDate)
+                .append(address, employeeEntity.address)
+                .append(city, employeeEntity.city)
+                .append(state, employeeEntity.state)
+                .append(country, employeeEntity.country)
+                .append(postalCode, employeeEntity.postalCode)
+                .append(phone, employeeEntity.phone)
+                .append(fax, employeeEntity.fax)
+                .append(email, employeeEntity.email)
                 .isEquals();
     }
 

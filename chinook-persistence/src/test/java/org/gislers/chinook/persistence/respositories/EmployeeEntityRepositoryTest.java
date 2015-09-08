@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.Employee;
+import org.gislers.chinook.persistence.respositories.entities.EmployeeEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,35 +17,35 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jim on 9/6/15.
  */
-public class EmployeeRepositoryTest extends BaseRepositoryTest {
+public class EmployeeEntityRepositoryTest extends BaseRepositoryTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeRepositoryTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeEntityRepositoryTest.class);
 
     @Inject
     private EmployeeRepository repository;
 
     @Test
     public void testFind() {
-        Optional<Employee> optional = repository.findOne(1);
+        Optional<EmployeeEntity> optional = repository.findOne(1);
         assertTrue(optional.isPresent());
 
-        Employee employee = optional.get();
-        assertEquals(new Integer(1), employee.getEmployeeId());
-        assertEquals("11120 Jasper Ave NW", employee.getAddress());
+        EmployeeEntity employeeEntity = optional.get();
+        assertEquals(new Integer(1), employeeEntity.getEmployeeId());
+        assertEquals("11120 Jasper Ave NW", employeeEntity.getAddress());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<Employee> optional = repository.findOne(99999);
+        Optional<EmployeeEntity> optional = repository.findOne(99999);
         assertFalse(optional.isPresent());
     }
 
     @Test
     public void testFindAll() throws Exception {
-        List<Employee> list = repository.findAll();
+        List<EmployeeEntity> list = repository.findAll();
         assertNotNull( list );
 
-        for( Employee item : list ) {
+        for( EmployeeEntity item : list ) {
             logger.debug( item.toString() );
         }
     }

@@ -3,17 +3,16 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class Track extends BaseEntity {
+@Table(name = "track", schema = "chinook")
+public class TrackEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,7 +27,7 @@ public class Track extends BaseEntity {
     private Integer     bytes;
     private BigDecimal  unitPrice;
 
-    public Track() {
+    public TrackEntity() {
     }
 
     public Integer getTrackId() {
@@ -105,7 +104,7 @@ public class Track extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Track{");
+        final StringBuilder sb = new StringBuilder("TrackEntity{");
         sb.append("trackId=").append(trackId);
         sb.append(", name='").append(name).append('\'');
         sb.append(", albumId=").append(albumId);
@@ -125,18 +124,18 @@ public class Track extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Track track = (Track) o;
+        TrackEntity trackEntity = (TrackEntity) o;
 
         return new EqualsBuilder()
-                .append(trackId, track.trackId)
-                .append(name, track.name)
-                .append(albumId, track.albumId)
-                .append(mediaTypeId, track.mediaTypeId)
-                .append(genreId, track.genreId)
-                .append(composer, track.composer)
-                .append(milliseconds, track.milliseconds)
-                .append(bytes, track.bytes)
-                .append(unitPrice, track.unitPrice)
+                .append(trackId, trackEntity.trackId)
+                .append(name, trackEntity.name)
+                .append(albumId, trackEntity.albumId)
+                .append(mediaTypeId, trackEntity.mediaTypeId)
+                .append(genreId, trackEntity.genreId)
+                .append(composer, trackEntity.composer)
+                .append(milliseconds, trackEntity.milliseconds)
+                .append(bytes, trackEntity.bytes)
+                .append(unitPrice, trackEntity.unitPrice)
                 .isEquals();
     }
 

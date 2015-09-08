@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.PlaylistTrack;
+import org.gislers.chinook.persistence.respositories.entities.PlaylistTrackEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,19 +13,19 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by jim on 9/6/15.
  */
-public class PlaylistTrackRepositoryTest extends BaseRepositoryTest {
+public class PlaylistEntityTrackEntityRepositoryTest extends BaseRepositoryTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(PlaylistTrackRepositoryTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistEntityTrackEntityRepositoryTest.class);
 
     @Inject
     private PlaylistTrackRepository repository;
 
     @Test
     public void testFindAll() throws Exception {
-        List<PlaylistTrack> entityList = repository.findAll();
+        List<PlaylistTrackEntity> entityList = repository.findAll();
         assertNotNull( entityList );
 
-        for( PlaylistTrack entity : entityList ) {
+        for( PlaylistTrackEntity entity : entityList ) {
             logger.debug(entity.toString());
         }
     }

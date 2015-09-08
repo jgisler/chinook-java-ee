@@ -1,12 +1,11 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.InvoiceLine;
+import org.gislers.chinook.persistence.respositories.entities.PlaylistEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,35 +17,35 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jim on 9/6/15.
  */
-public class InvoiceLineRepositoryTest extends BaseRepositoryTest {
+public class PlaylistEntityRepositoryTest extends BaseRepositoryTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(InvoiceLineRepositoryTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistEntityRepositoryTest.class);
 
     @Inject
-    private InvoiceLineRepository repository;
+    private PlaylistRepository repository;
 
     @Test
     public void testFind() {
-        Optional<InvoiceLine> optional = repository.findOne(1);
+        Optional<PlaylistEntity> optional = repository.findOne(1);
         assertTrue(optional.isPresent());
 
-        InvoiceLine entity = optional.get();
-        assertEquals(new Integer(1), entity.getInvoiceId());
-        assertEquals(new BigDecimal("0.99"), entity.getUnitPrice());
+        PlaylistEntity entity = optional.get();
+        assertEquals(new Integer(1), entity.getPlaylistId());
+        assertEquals("Music", entity.getName());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<InvoiceLine> optional = repository.findOne(99999);
+        Optional<PlaylistEntity> optional = repository.findOne(99999);
         assertFalse(optional.isPresent());
     }
 
     @Test
     public void testFindAll() throws Exception {
-        List<InvoiceLine> entityList = repository.findAll();
+        List<PlaylistEntity> entityList = repository.findAll();
         assertNotNull( entityList );
 
-        for( InvoiceLine entity : entityList ) {
+        for( PlaylistEntity entity : entityList ) {
             logger.debug(entity.toString());
         }
     }

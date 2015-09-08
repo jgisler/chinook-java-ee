@@ -3,16 +3,15 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class Customer extends BaseEntity {
+@Table(name = "customer", schema = "chinook")
+public class CustomerEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,7 +30,7 @@ public class Customer extends BaseEntity {
     private String email;
     private int supportRepId;
 
-    public Customer() {
+    public CustomerEntity() {
     }
 
     public int getCustomerId() {
@@ -140,7 +139,7 @@ public class Customer extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Customer{");
+        final StringBuilder sb = new StringBuilder("CustomerEntity{");
         sb.append("customerId=").append(customerId);
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
@@ -164,22 +163,22 @@ public class Customer extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Customer customer = (Customer) o;
+        CustomerEntity customerEntity = (CustomerEntity) o;
 
         return new EqualsBuilder()
-                .append(customerId, customer.customerId)
-                .append(supportRepId, customer.supportRepId)
-                .append(firstName, customer.firstName)
-                .append(lastName, customer.lastName)
-                .append(company, customer.company)
-                .append(address, customer.address)
-                .append(city, customer.city)
-                .append(state, customer.state)
-                .append(country, customer.country)
-                .append(postalCode, customer.postalCode)
-                .append(phone, customer.phone)
-                .append(fax, customer.fax)
-                .append(email, customer.email)
+                .append(customerId, customerEntity.customerId)
+                .append(supportRepId, customerEntity.supportRepId)
+                .append(firstName, customerEntity.firstName)
+                .append(lastName, customerEntity.lastName)
+                .append(company, customerEntity.company)
+                .append(address, customerEntity.address)
+                .append(city, customerEntity.city)
+                .append(state, customerEntity.state)
+                .append(country, customerEntity.country)
+                .append(postalCode, customerEntity.postalCode)
+                .append(phone, customerEntity.phone)
+                .append(fax, customerEntity.fax)
+                .append(email, customerEntity.email)
                 .isEquals();
     }
 

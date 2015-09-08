@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.Genre;
+import org.gislers.chinook.persistence.respositories.entities.GenreEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,35 +17,35 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by jim on 9/6/15.
  */
-public class GenreRepositoryTest extends BaseRepositoryTest {
+public class GenreEntityRepositoryTest extends BaseRepositoryTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(GenreRepositoryTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(GenreEntityRepositoryTest.class);
 
     @Inject
     private GenreRepository repository;
 
     @Test
     public void testFind() {
-        Optional<Genre> optional = repository.findOne(1);
+        Optional<GenreEntity> optional = repository.findOne(1);
         assertTrue(optional.isPresent());
 
-        Genre genre = optional.get();
-        assertEquals(new Integer(1), genre.getGenreId());
-        assertEquals("Rock", genre.getName());
+        GenreEntity genreEntity = optional.get();
+        assertEquals(new Integer(1), genreEntity.getGenreId());
+        assertEquals("Rock", genreEntity.getName());
     }
 
     @Test
     public void testFind_NotFound() {
-        Optional<Genre> optional = repository.findOne(99999);
+        Optional<GenreEntity> optional = repository.findOne(99999);
         assertFalse(optional.isPresent());
     }
 
     @Test
     public void testFindAll() throws Exception {
-        List<Genre> list = repository.findAll();
+        List<GenreEntity> list = repository.findAll();
         assertNotNull( list );
 
-        for( Genre item : list ) {
+        for( GenreEntity item : list ) {
             logger.debug(item.toString());
         }
     }

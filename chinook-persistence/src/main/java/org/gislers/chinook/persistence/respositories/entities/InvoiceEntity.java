@@ -3,18 +3,17 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class Invoice extends BaseEntity {
+@Table(name = "invoice", schema = "chinook")
+public class InvoiceEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,7 +27,7 @@ public class Invoice extends BaseEntity {
     private String      billingPostalCode;
     private BigDecimal  total;
 
-    public Invoice() {
+    public InvoiceEntity() {
     }
 
     public Integer getInvoiceId() {
@@ -97,7 +96,7 @@ public class Invoice extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Invoice{");
+        final StringBuilder sb = new StringBuilder("InvoiceEntity{");
         sb.append("invoiceId=").append(invoiceId);
         sb.append(", customerId=").append(customerId);
         sb.append(", invoiceDate=").append(invoiceDate);
@@ -116,17 +115,17 @@ public class Invoice extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Invoice invoice = (Invoice) o;
+        InvoiceEntity invoiceEntity = (InvoiceEntity) o;
 
         return new EqualsBuilder()
-                .append(invoiceId, invoice.invoiceId)
-                .append(customerId, invoice.customerId)
-                .append(invoiceDate, invoice.invoiceDate)
-                .append(billingAddress, invoice.billingAddress)
-                .append(billingState, invoice.billingState)
-                .append(billingCountry, invoice.billingCountry)
-                .append(billingPostalCode, invoice.billingPostalCode)
-                .append(total, invoice.total)
+                .append(invoiceId, invoiceEntity.invoiceId)
+                .append(customerId, invoiceEntity.customerId)
+                .append(invoiceDate, invoiceEntity.invoiceDate)
+                .append(billingAddress, invoiceEntity.billingAddress)
+                .append(billingState, invoiceEntity.billingState)
+                .append(billingCountry, invoiceEntity.billingCountry)
+                .append(billingPostalCode, invoiceEntity.billingPostalCode)
+                .append(total, invoiceEntity.total)
                 .isEquals();
     }
 

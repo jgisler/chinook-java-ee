@@ -3,31 +3,31 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class MediaType extends BaseEntity {
+@Table(name = "genre", schema = "chinook")
+public class GenreEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer mediaTypeId;
-    private String  name;
+    private Integer genreId;
 
-    public MediaType() {
+    private String name;
+
+    public GenreEntity() {
     }
 
-    public Integer getMediaTypeId() {
-        return mediaTypeId;
+    public Integer getGenreId() {
+        return genreId;
     }
 
-    public void setMediaTypeId(Integer mediaTypeId) {
-        this.mediaTypeId = mediaTypeId;
+    public void setGenreId(Integer genreId) {
+        this.genreId = genreId;
     }
 
     public String getName() {
@@ -40,8 +40,8 @@ public class MediaType extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("MediaType{");
-        sb.append("mediaTypeId=").append(mediaTypeId);
+        final StringBuilder sb = new StringBuilder("GenreEntity{");
+        sb.append("genreId=").append(genreId);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
@@ -53,18 +53,18 @@ public class MediaType extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        MediaType mediaType = (MediaType) o;
+        GenreEntity genreEntity = (GenreEntity) o;
 
         return new EqualsBuilder()
-                .append(mediaTypeId, mediaType.mediaTypeId)
-                .append(name, mediaType.name)
+                .append(genreId, genreEntity.genreId)
+                .append(name, genreEntity.name)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(mediaTypeId)
+                .append(genreId)
                 .append(name)
                 .toHashCode();
     }

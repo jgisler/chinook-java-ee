@@ -1,10 +1,10 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.Playlist;
+import org.gislers.chinook.persistence.respositories.entities.PlaylistEntity;
 
 /**
  * Created by jim on 8/31/15.
  */
-public interface PlaylistRepository extends BaseRepository<Playlist, Integer> {
+public interface PlaylistRepository extends BaseRepository<PlaylistEntity, Integer> {
 
 }

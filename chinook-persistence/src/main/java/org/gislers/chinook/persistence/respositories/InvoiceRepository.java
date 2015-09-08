@@ -1,10 +1,10 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.Invoice;
+import org.gislers.chinook.persistence.respositories.entities.InvoiceEntity;
 
 /**
  * Created by jim on 8/31/15.
  */
-public interface InvoiceRepository extends BaseRepository<Invoice, Integer> {
+public interface InvoiceRepository extends BaseRepository<InvoiceEntity, Integer> {
 
 }

@@ -3,23 +3,22 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-@IdClass(value = PlaylistTrack.PlaylistTrackId.class)
-public class PlaylistTrack extends BaseEntity {
+@Table(name = "playlistTrack", schema = "chinook")
+@IdClass(value = PlaylistTrackEntity.PlaylistTrackId.class)
+public class PlaylistTrackEntity extends BaseEntity {
 
     private Integer playlistId;
     private Integer trackId;
 
-    public PlaylistTrack() {
+    public PlaylistTrackEntity() {
     }
 
     @Id
@@ -44,7 +43,7 @@ public class PlaylistTrack extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("PlaylistTrack{");
+        final StringBuilder sb = new StringBuilder("PlaylistTrackEntity{");
         sb.append("playlistId=").append(playlistId);
         sb.append(", trackId=").append(trackId);
         sb.append('}');
@@ -57,7 +56,7 @@ public class PlaylistTrack extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlaylistTrack that = (PlaylistTrack) o;
+        PlaylistTrackEntity that = (PlaylistTrackEntity) o;
 
         return new EqualsBuilder()
                 .append(playlistId, that.playlistId)

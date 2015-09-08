@@ -3,31 +3,30 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by jim on 8/29/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class Artist extends BaseEntity {
+@Table(name = "playlist", schema = "chinook")
+public class PlaylistEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int artistId;
-    private String name;
+    private Integer playlistId;
+    private String  name;
 
-    public Artist() {
+    public PlaylistEntity() {
     }
 
-    public int getArtistId() {
-        return artistId;
+    public Integer getPlaylistId() {
+        return playlistId;
     }
 
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
+    public void setPlaylistId(Integer playlistId) {
+        this.playlistId = playlistId;
     }
 
     public String getName() {
@@ -40,8 +39,8 @@ public class Artist extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Artist{");
-        sb.append("artistId=").append(artistId);
+        final StringBuilder sb = new StringBuilder("PlaylistEntity{");
+        sb.append("playlistId=").append(playlistId);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
@@ -53,18 +52,18 @@ public class Artist extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Artist artist = (Artist) o;
+        PlaylistEntity playlistEntity = (PlaylistEntity) o;
 
         return new EqualsBuilder()
-                .append(artistId, artist.artistId)
-                .append(name, artist.name)
+                .append(playlistId, playlistEntity.playlistId)
+                .append(name, playlistEntity.name)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(artistId)
+                .append(playlistId)
                 .append(name)
                 .toHashCode();
     }

@@ -3,17 +3,16 @@ package org.gislers.chinook.persistence.respositories.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 @Entity
-public class InvoiceLine extends BaseEntity {
+@Table(name = "invoiceLine", schema = "chinook")
+public class InvoiceLineEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,7 +22,7 @@ public class InvoiceLine extends BaseEntity {
     private BigDecimal  unitPrice;
     private Integer     quantity;
 
-    public InvoiceLine() {
+    public InvoiceLineEntity() {
     }
 
     public Integer getInvoiceLineId() {
@@ -68,7 +67,7 @@ public class InvoiceLine extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("InvoiceLine{");
+        final StringBuilder sb = new StringBuilder("InvoiceLineEntity{");
         sb.append("invoiceLineId=").append(invoiceLineId);
         sb.append(", invoiceId=").append(invoiceId);
         sb.append(", trackId=").append(trackId);
@@ -84,7 +83,7 @@ public class InvoiceLine extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        InvoiceLine that = (InvoiceLine) o;
+        InvoiceLineEntity that = (InvoiceLineEntity) o;
 
         return new EqualsBuilder()
                 .append(invoiceLineId, that.invoiceLineId)
