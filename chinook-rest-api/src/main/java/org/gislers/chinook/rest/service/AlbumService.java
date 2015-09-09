@@ -9,8 +9,6 @@ import org.gislers.chinook.rest.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 /**
  * Created by:   jgisle
  * Created date: 9/8/15
@@ -19,7 +17,7 @@ import java.util.Optional;
 public class AlbumService {
 
     private AlbumRepository albumRepository;
-    private ArtistRepository artistRepository;
+    private ArtistService artistService;
 
     @Autowired
     public void setAlbumRepository(AlbumRepository albumRepository) {
@@ -27,15 +25,20 @@ public class AlbumService {
     }
 
     @Autowired
-    public void setArtistRepository(ArtistRepository artistRepository) {
-        this.artistRepository = artistRepository;
+    public void setArtistService(ArtistService artistService) {
+        this.artistService = artistService;
     }
 
-    public Album findAlbum( int albumId ) {
-        return null;
-    }
-
-    AlbumEntity findAlbumEntity( int albumId ) {
-        return albumRepository.findOne( albumId );
+    public Album getAlbum(int albumId) {
+        Album album = null;
+        AlbumEntity albumEntity = albumRepository.findOne( albumId );
+        if( albumEntity != null ) {
+            album = new Album( albumEntity );
+            Artist artist = artistService.getArtist(albumEntity.getArtistId());
+            if( artist != null ) {
+                album.setArtist( artist );
+            }
+        }
+        return album;
     }
 }

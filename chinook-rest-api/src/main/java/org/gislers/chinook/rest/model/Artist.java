@@ -1,5 +1,7 @@
 package org.gislers.chinook.rest.model;
 
+import org.gislers.chinook.persistence.respositories.entities.ArtistEntity;
+
 /**
  * Created by:   jgisle
  * Created date: 9/8/15
@@ -10,6 +12,11 @@ public class Artist {
     private String name;
 
     public Artist() {
+    }
+
+    public Artist( ArtistEntity artistEntity ) {
+        this.id = artistEntity.getArtistId();
+        this.name = artistEntity.getName();
     }
 
     public int getId() {

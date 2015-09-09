@@ -1,5 +1,8 @@
 package org.gislers.chinook.rest.model;
 
+import org.gislers.chinook.persistence.respositories.entities.AlbumEntity;
+import org.gislers.chinook.persistence.respositories.entities.ArtistEntity;
+
 /**
  * Created by:   jgisle
  * Created date: 9/8/15
@@ -11,6 +14,11 @@ public class Album {
     private Artist artist;
 
     public Album() {
+    }
+
+    public Album( AlbumEntity albumEntity ) {
+        this.id = albumEntity.getAlbumId();
+        this.name = albumEntity.getTitle();
     }
 
     public int getId() {
