@@ -24,9 +24,9 @@ import javax.persistence.EntityManagerFactory;
 @EnableJpaRepositories("org.gislers.chinook.persistence.respositories")
 @ComponentScan("org.gislers.chinook.persistence")
 @PropertySource("classpath:META-INF/application.properties")
-public class AppConfig {
+public class PersistenceConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger( AppConfig.class );
+    private static final Logger logger = LoggerFactory.getLogger( PersistenceConfig.class );
 
     @Autowired
     private Environment env;
@@ -44,7 +44,7 @@ public class AppConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setPersistenceXmlLocation("META-INF/persistence.xml");
+        em.setPersistenceXmlLocation("classpath:META-INF/persistence.xml");
         em.setJpaVendorAdapter(vendorAdapter());
         return em;
     }
