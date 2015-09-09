@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 /**
  * Created by:   jgisle
  * Created date: 9/8/15
@@ -32,5 +34,10 @@ public class AlbumController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(album, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/artist/id/{artistId}", method = RequestMethod.GET)
+    public ResponseEntity<List<Album>> getAlbumsByArtistId( @PathVariable("artistId") int artistId ) {
+        return null;
     }
 }
