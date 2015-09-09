@@ -9,6 +9,9 @@ import org.gislers.chinook.rest.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by:   jgisle
  * Created date: 9/8/15
@@ -40,5 +43,17 @@ public class AlbumService {
             }
         }
         return album;
+    }
+
+    public List<Album> getAlbumsByArtist( int artistId ) {
+        List<Album> albums = null;
+        List<AlbumEntity> albumEntities = albumRepository.findByArtistIdOrderByTitleAsc(artistId);
+//        if( !albumEntities.isEmpty() ) {
+//            albums = new ArrayList<>(albumEntities.size());
+//            for( AlbumEntity albumEntity : albumEntities ) {
+//                albums.add( new Album() )
+//            }
+//        }
+        return albums;
     }
 }
