@@ -38,6 +38,7 @@ public class AlbumController {
 
     @RequestMapping(value = "/artist/id/{artistId}", method = RequestMethod.GET)
     public ResponseEntity<List<Album>> getAlbumsByArtistId( @PathVariable("artistId") int artistId ) {
-        return null;
+        List<Album> albums = albumService.getAlbumsByArtist( artistId );
+        return new ResponseEntity<>(albums, HttpStatus.OK);
     }
 }
