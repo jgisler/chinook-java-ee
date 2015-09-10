@@ -48,12 +48,12 @@ public class AlbumService {
     public List<Album> getAlbumsByArtist( int artistId ) {
         List<Album> albums = null;
         List<AlbumEntity> albumEntities = albumRepository.findByArtistIdOrderByTitleAsc(artistId);
-//        if( !albumEntities.isEmpty() ) {
-//            albums = new ArrayList<>(albumEntities.size());
-//            for( AlbumEntity albumEntity : albumEntities ) {
-//                albums.add( new Album() )
-//            }
-//        }
+        if( !albumEntities.isEmpty() ) {
+            albums = new ArrayList<>(albumEntities.size());
+            for( AlbumEntity albumEntity : albumEntities ) {
+                albums.add( new Album(albumEntity) );
+            }
+        }
         return albums;
     }
 }

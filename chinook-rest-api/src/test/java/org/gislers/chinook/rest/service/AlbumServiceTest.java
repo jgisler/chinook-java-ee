@@ -13,6 +13,8 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -35,5 +37,21 @@ public class AlbumServiceTest extends BaseServiceTest {
         assertNotNull( artist );
         assertEquals(1, artist.getId());
         assertEquals("AC/DC", artist.getName());
+    }
+
+    @Test
+    public void testGetAlbumsByArtist() {
+
+        List<Album> albums = albumService.getAlbumsByArtist(1);
+        assertFalse( albums.isEmpty());
+        assertEquals(2, albums.size());
+
+        Album album = albums.get(0);
+        assertEquals(1, album.getId());
+        assertEquals( "For Those About To Rock We Salute You", album.getName() );
+
+        album = albums.get(1);
+        assertEquals( 4, album.getId() );
+        assertEquals( "Let There Be Rock", album.getName() );
     }
 }
