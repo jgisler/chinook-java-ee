@@ -159,6 +159,8 @@ ALTER TABLE `Album` ADD CONSTRAINT `FK_AlbumArtistId`
 
 CREATE INDEX `IFK_AlbumArtistId` ON `Album` (`ArtistId`);
 
+ALTER TABLE `Chinook`.`Album` ADD UNIQUE INDEX `UNQ_TitleArtistId` USING BTREE (`Title` ASC, `ArtistId` ASC);
+
 ALTER TABLE `Customer` ADD CONSTRAINT `FK_CustomerSupportRepId`
     FOREIGN KEY (`SupportRepId`) REFERENCES `Employee` (`EmployeeId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
