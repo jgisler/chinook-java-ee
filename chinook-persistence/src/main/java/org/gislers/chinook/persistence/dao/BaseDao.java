@@ -1,0 +1,24 @@
+package org.gislers.chinook.persistence.dao;
+
+import org.gislers.chinook.persistence.entities.BaseEntity;
+
+import java.util.List;
+
+/**
+ * Created by:   jgisle
+ * Created date: 9/10/15
+ */
+public interface BaseDao<T extends BaseEntity> {
+
+    T findOne( int id );
+
+    List<T> findAll();
+
+    void create(T entity);
+
+    T update(T entity);
+
+    void delete(T entity);
+
+    void deleteById(int entityId);
+}

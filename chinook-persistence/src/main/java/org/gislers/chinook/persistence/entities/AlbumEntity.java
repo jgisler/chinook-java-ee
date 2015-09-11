@@ -13,10 +13,7 @@ public class AlbumEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer albumId;
-
     private String title;
-
-    private Integer artistId;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="artistid")
