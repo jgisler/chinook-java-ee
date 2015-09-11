@@ -1,6 +1,6 @@
 package org.gislers.chinook.rest.model;
 
-import org.gislers.chinook.persistence.respositories.entities.ArtistEntity;
+import org.gislers.chinook.persistence.entities.ArtistEntity;
 
 /**
  * Created by:   jgisle

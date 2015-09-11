@@ -1,17 +1,9 @@
 package org.gislers.chinook.rest.service;
 
-import org.gislers.chinook.persistence.config.PersistenceConfig;
-import org.gislers.chinook.persistence.respositories.entities.ArtistEntity;
-import org.gislers.chinook.rest.config.RestConfig;
 import org.gislers.chinook.rest.model.Album;
 import org.gislers.chinook.rest.model.Artist;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import java.util.List;
 

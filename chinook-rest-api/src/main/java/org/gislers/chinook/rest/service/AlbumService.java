@@ -1,9 +1,7 @@
 package org.gislers.chinook.rest.service;
 
 import org.gislers.chinook.persistence.respositories.AlbumRepository;
-import org.gislers.chinook.persistence.respositories.ArtistRepository;
-import org.gislers.chinook.persistence.respositories.entities.AlbumEntity;
-import org.gislers.chinook.persistence.respositories.entities.ArtistEntity;
+import org.gislers.chinook.persistence.entities.AlbumEntity;
 import org.gislers.chinook.rest.model.Album;
 import org.gislers.chinook.rest.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,7 @@ public class AlbumService {
         AlbumEntity albumEntity = albumRepository.findOne( albumId );
         if( albumEntity != null ) {
             album = new Album( albumEntity );
-            Artist artist = artistService.getArtist(albumEntity.getArtistId());
+            Artist artist = new Artist(albumEntity.getArtistEntity());
             if( artist != null ) {
                 album.setArtist( artist );
             }

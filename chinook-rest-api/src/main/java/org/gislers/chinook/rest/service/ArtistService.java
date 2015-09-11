@@ -1,7 +1,7 @@
 package org.gislers.chinook.rest.service;
 
 import org.gislers.chinook.persistence.respositories.ArtistRepository;
-import org.gislers.chinook.persistence.respositories.entities.ArtistEntity;
+import org.gislers.chinook.persistence.entities.ArtistEntity;
 import org.gislers.chinook.rest.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
