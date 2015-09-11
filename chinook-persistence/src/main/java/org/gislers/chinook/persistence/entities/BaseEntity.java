@@ -1,4 +1,4 @@
-package org.gislers.chinook.persistence.respositories.entities;
+package org.gislers.chinook.persistence.entities;
 
 import java.io.Serializable;
 

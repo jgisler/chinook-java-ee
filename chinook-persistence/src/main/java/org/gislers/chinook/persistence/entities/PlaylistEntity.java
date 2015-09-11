@@ -1,4 +1,4 @@
-package org.gislers.chinook.persistence.respositories.entities;
+package org.gislers.chinook.persistence.entities;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -10,24 +10,23 @@ import javax.persistence.*;
  * Created date: 9/6/15
  */
 @Entity
-@Table(name = "genre", schema = "chinook")
-public class GenreEntity extends BaseEntity {
+@Table(name = "playlist", schema = "chinook")
+public class PlaylistEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer genreId;
+    private Integer playlistId;
+    private String  name;
 
-    private String name;
-
-    public GenreEntity() {
+    public PlaylistEntity() {
     }
 
-    public Integer getGenreId() {
-        return genreId;
+    public Integer getPlaylistId() {
+        return playlistId;
     }
 
-    public void setGenreId(Integer genreId) {
-        this.genreId = genreId;
+    public void setPlaylistId(Integer playlistId) {
+        this.playlistId = playlistId;
     }
 
     public String getName() {
@@ -40,8 +39,8 @@ public class GenreEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("GenreEntity{");
-        sb.append("genreId=").append(genreId);
+        final StringBuilder sb = new StringBuilder("PlaylistEntity{");
+        sb.append("playlistId=").append(playlistId);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
@@ -53,18 +52,18 @@ public class GenreEntity extends BaseEntity {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        GenreEntity genreEntity = (GenreEntity) o;
+        PlaylistEntity playlistEntity = (PlaylistEntity) o;
 
         return new EqualsBuilder()
-                .append(genreId, genreEntity.genreId)
-                .append(name, genreEntity.name)
+                .append(playlistId, playlistEntity.playlistId)
+                .append(name, playlistEntity.name)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(genreId)
+                .append(playlistId)
                 .append(name)
                 .toHashCode();
     }

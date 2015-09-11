@@ -1,13 +1,13 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.AlbumEntity;
+import org.gislers.chinook.persistence.entities.AlbumEntity;
+import org.gislers.chinook.persistence.entities.ArtistEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -29,6 +29,11 @@ public class AlbumEntityRepositoryTest extends BaseRepositoryTest {
 
         assertEquals(new Integer(1), entity.getAlbumId());
         assertEquals("For Those About To Rock We Salute You", entity.getTitle());
+
+        ArtistEntity artistEntity = entity.getArtistEntity();
+        assertNotNull( artistEntity );
+        assertEquals(1, artistEntity.getArtistId());
+        assertEquals("", artistEntity.getName());
     }
 
     @Test

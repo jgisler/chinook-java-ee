@@ -1,6 +1,6 @@
 package org.gislers.chinook.persistence.respositories;
 
-import org.gislers.chinook.persistence.respositories.entities.PlaylistTrackEntity;
+import org.gislers.chinook.persistence.entities.PlaylistTrackEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,8 @@ import java.util.List;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by jim on 9/6/15.
+ * Created by:   jim
+ * Created date: 9/6/15
  */
 public class PlaylistEntityTrackEntityRepositoryTest extends BaseRepositoryTest {
 

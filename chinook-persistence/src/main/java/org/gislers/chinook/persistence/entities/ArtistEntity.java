@@ -1,9 +1,10 @@
-package org.gislers.chinook.persistence.respositories.entities;
+package org.gislers.chinook.persistence.entities;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by:   jim
@@ -17,6 +18,9 @@ public class ArtistEntity extends BaseEntity {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int artistId;
     private String name;
+
+    @OneToMany
+    private List<AlbumEntity> albumEntities;
 
     public ArtistEntity() {
     }
@@ -35,6 +39,14 @@ public class ArtistEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<AlbumEntity> getAlbumEntities() {
+        return albumEntities;
+    }
+
+    public void setAlbumEntities(List<AlbumEntity> albumEntities) {
+        this.albumEntities = albumEntities;
     }
 
     @Override

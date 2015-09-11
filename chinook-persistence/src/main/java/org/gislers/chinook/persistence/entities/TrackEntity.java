@@ -1,4 +1,4 @@
-package org.gislers.chinook.persistence.respositories.entities;
+package org.gislers.chinook.persistence.entities;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
