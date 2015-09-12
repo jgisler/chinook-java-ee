@@ -1,9 +1,10 @@
 package org.gislers.chinook.persistence.entities;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by:   jim
@@ -15,18 +16,18 @@ public class GenreEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer genreId;
+    private long genreId;
 
     private String name;
 
     public GenreEntity() {
     }
 
-    public Integer getGenreId() {
+    public long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(Integer genreId) {
+    public void setGenreId(long genreId) {
         this.genreId = genreId;
     }
 
@@ -36,36 +37,5 @@ public class GenreEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("GenreEntity{");
-        sb.append("genreId=").append(genreId);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GenreEntity genreEntity = (GenreEntity) o;
-
-        return new EqualsBuilder()
-                .append(genreId, genreEntity.genreId)
-                .append(name, genreEntity.name)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(genreId)
-                .append(name)
-                .toHashCode();
     }
 }

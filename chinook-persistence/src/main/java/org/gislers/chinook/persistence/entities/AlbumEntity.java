@@ -1,6 +1,14 @@
 package org.gislers.chinook.persistence.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Created by:   jim
@@ -12,21 +20,22 @@ public class AlbumEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer albumId;
+    @Column(name="album_id")
+    private long albumId;
     private String title;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="artistid")
+    @JoinColumn(name="artist_id")
     private ArtistEntity artistEntity;
 
     public AlbumEntity() {
     }
 
-    public Integer getAlbumId() {
+    public long getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(Integer albumId) {
+    public void setAlbumId(long albumId) {
         this.albumId = albumId;
     }
 

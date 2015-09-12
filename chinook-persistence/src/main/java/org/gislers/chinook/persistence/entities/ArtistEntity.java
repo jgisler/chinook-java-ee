@@ -1,6 +1,14 @@
 package org.gislers.chinook.persistence.entities;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -13,7 +21,8 @@ public class ArtistEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int artistId;
+    @Column(name="artist_id")
+    private long artistId;
     private String name;
 
     @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="artistEntity")
@@ -22,11 +31,11 @@ public class ArtistEntity extends BaseEntity {
     public ArtistEntity() {
     }
 
-    public int getArtistId() {
+    public long getArtistId() {
         return artistId;
     }
 
-    public void setArtistId(int artistId) {
+    public void setArtistId(long artistId) {
         this.artistId = artistId;
     }
 

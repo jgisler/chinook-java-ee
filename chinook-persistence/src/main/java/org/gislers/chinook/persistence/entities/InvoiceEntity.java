@@ -1,9 +1,14 @@
 package org.gislers.chinook.persistence.entities;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,33 +22,46 @@ public class InvoiceEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer     invoiceId;
+    private long invoiceId;
 
-    private Integer     customerId;
-    private Date        invoiceDate;
-    private String      billingAddress;
-    private String      billingState;
-    private String      billingCountry;
-    private String      billingPostalCode;
-    private BigDecimal  total;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="customer_id")
+    private CustomerEntity customerEntity;
+
+    @Column(name="invoice_date")
+    private Date invoiceDate;
+
+    @Column(name="billing_address")
+    private String billingAddress;
+
+    @Column(name="billing_state")
+    private String billingState;
+
+    @Column(name="billing_country")
+    private String billingCountry;
+
+    @Column(name="billing_postal_code")
+    private String billingPostalCode;
+
+    private BigDecimal total;
 
     public InvoiceEntity() {
     }
 
-    public Integer getInvoiceId() {
+    public long getInvoiceId() {
         return invoiceId;
     }
 
-    public void setInvoiceId(Integer invoiceId) {
+    public void setInvoiceId(long invoiceId) {
         this.invoiceId = invoiceId;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public CustomerEntity getCustomerEntity() {
+        return customerEntity;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomerEntity(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
     }
 
     public Date getInvoiceDate() {
@@ -92,54 +110,5 @@ public class InvoiceEntity extends BaseEntity {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("InvoiceEntity{");
-        sb.append("invoiceId=").append(invoiceId);
-        sb.append(", customerId=").append(customerId);
-        sb.append(", invoiceDate=").append(invoiceDate);
-        sb.append(", billingAddress='").append(billingAddress).append('\'');
-        sb.append(", billingState='").append(billingState).append('\'');
-        sb.append(", billingCountry='").append(billingCountry).append('\'');
-        sb.append(", billingPostalCode='").append(billingPostalCode).append('\'');
-        sb.append(", total=").append(total);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        InvoiceEntity invoiceEntity = (InvoiceEntity) o;
-
-        return new EqualsBuilder()
-                .append(invoiceId, invoiceEntity.invoiceId)
-                .append(customerId, invoiceEntity.customerId)
-                .append(invoiceDate, invoiceEntity.invoiceDate)
-                .append(billingAddress, invoiceEntity.billingAddress)
-                .append(billingState, invoiceEntity.billingState)
-                .append(billingCountry, invoiceEntity.billingCountry)
-                .append(billingPostalCode, invoiceEntity.billingPostalCode)
-                .append(total, invoiceEntity.total)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(invoiceId)
-                .append(customerId)
-                .append(invoiceDate)
-                .append(billingAddress)
-                .append(billingState)
-                .append(billingCountry)
-                .append(billingPostalCode)
-                .append(total)
-                .toHashCode();
     }
 }

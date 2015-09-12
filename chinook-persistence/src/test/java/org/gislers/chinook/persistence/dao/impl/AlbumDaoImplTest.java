@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by:   jgisle
@@ -27,7 +30,7 @@ public class AlbumDaoImplTest extends BaseDaoImplTest {
     public void testFindOne() throws Exception {
         AlbumEntity entity = dao.findOne(1);
         assertNotNull(entity);
-        assertEquals(new Integer(1), entity.getAlbumId());
+        assertEquals(1, entity.getAlbumId());
         assertEquals("For Those About To Rock We Salute You", entity.getTitle());
 
         ArtistEntity artistEntity = entity.getArtistEntity();
@@ -70,7 +73,7 @@ public class AlbumDaoImplTest extends BaseDaoImplTest {
     public void testUpdate() throws Exception {
         AlbumEntity entity = dao.findOne(1);
         assertNotNull(entity);
-        assertEquals(new Integer(1), entity.getAlbumId());
+        assertEquals(1, entity.getAlbumId());
         assertEquals("For Those About To Rock We Salute You", entity.getTitle());
 
         entity.setTitle("For Those About To Rock, We Salute You");
@@ -121,7 +124,7 @@ public class AlbumDaoImplTest extends BaseDaoImplTest {
     public void testDeleteById() throws Exception {
         AlbumEntity entity = dao.findOne(1);
         assertNotNull(entity);
-        assertEquals(new Integer(1), entity.getAlbumId());
+        assertEquals(1, entity.getAlbumId());
         assertEquals("For Those About To Rock We Salute You", entity.getTitle());
 
         dao.deleteById( 1 );

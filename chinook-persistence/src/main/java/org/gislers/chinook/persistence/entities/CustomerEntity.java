@@ -1,9 +1,17 @@
 package org.gislers.chinook.persistence.entities;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.List;
 
 /**
  * Created by:   jim
@@ -15,29 +23,42 @@ public class CustomerEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int customerId;
+    @Column(name="customer_id")
+    private long customerId;
 
+    @Column(name="first_name")
     private String firstName;
+
+    @Column(name="last_name")
     private String lastName;
+
+    @Column(name="postal_code")
+    private String postalCode;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="support_rep_id")
+    private EmployeeEntity supportRep;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="customerEntity")
+    private List<InvoiceEntity> invoiceEntities;
+
     private String company;
     private String address;
     private String city;
     private String state;
     private String country;
-    private String postalCode;
     private String phone;
     private String fax;
     private String email;
-    private int supportRepId;
 
     public CustomerEntity() {
     }
 
-    public int getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 
@@ -129,75 +150,19 @@ public class CustomerEntity extends BaseEntity {
         this.email = email;
     }
 
-    public int getSupportRepId() {
-        return supportRepId;
+    public EmployeeEntity getSupportRep() {
+        return supportRep;
     }
 
-    public void setSupportRepId(int supportRepId) {
-        this.supportRepId = supportRepId;
+    public void setSupportRep(EmployeeEntity supportRep) {
+        this.supportRep = supportRep;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("CustomerEntity{");
-        sb.append("customerId=").append(customerId);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", company='").append(company).append('\'');
-        sb.append(", address='").append(address).append('\'');
-        sb.append(", city='").append(city).append('\'');
-        sb.append(", state='").append(state).append('\'');
-        sb.append(", country='").append(country).append('\'');
-        sb.append(", postalCode='").append(postalCode).append('\'');
-        sb.append(", phone='").append(phone).append('\'');
-        sb.append(", fax='").append(fax).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", supportRepId=").append(supportRepId);
-        sb.append('}');
-        return sb.toString();
+    public List<InvoiceEntity> getInvoiceEntities() {
+        return invoiceEntities;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CustomerEntity customerEntity = (CustomerEntity) o;
-
-        return new EqualsBuilder()
-                .append(customerId, customerEntity.customerId)
-                .append(supportRepId, customerEntity.supportRepId)
-                .append(firstName, customerEntity.firstName)
-                .append(lastName, customerEntity.lastName)
-                .append(company, customerEntity.company)
-                .append(address, customerEntity.address)
-                .append(city, customerEntity.city)
-                .append(state, customerEntity.state)
-                .append(country, customerEntity.country)
-                .append(postalCode, customerEntity.postalCode)
-                .append(phone, customerEntity.phone)
-                .append(fax, customerEntity.fax)
-                .append(email, customerEntity.email)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(customerId)
-                .append(firstName)
-                .append(lastName)
-                .append(company)
-                .append(address)
-                .append(city)
-                .append(state)
-                .append(country)
-                .append(postalCode)
-                .append(phone)
-                .append(fax)
-                .append(email)
-                .append(supportRepId)
-                .toHashCode();
+    public void setInvoiceEntities(List<InvoiceEntity> invoiceEntities) {
+        this.invoiceEntities = invoiceEntities;
     }
 }

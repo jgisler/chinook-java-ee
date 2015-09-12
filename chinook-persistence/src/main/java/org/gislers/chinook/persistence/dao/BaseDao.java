@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface BaseDao<T extends BaseEntity> {
 
-    T findOne( int id );
+    T findOne( long id );
 
     List<T> findAll();
 
@@ -20,5 +20,5 @@ public interface BaseDao<T extends BaseEntity> {
 
     void delete(T entity);
 
-    void deleteById(int entityId);
+    void deleteById(long entityId);
 }

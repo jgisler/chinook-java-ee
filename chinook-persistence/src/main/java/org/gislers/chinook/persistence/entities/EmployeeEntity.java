@@ -3,8 +3,18 @@ package org.gislers.chinook.persistence.entities;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by:   jim
@@ -16,20 +26,37 @@ public class EmployeeEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer employeeId;
+    @Column(name="employee_id")
+    private long employeeId;
 
-    private Integer reportsTo;
+    @ManyToOne(fetch=FetchType.LAZY)
+    private EmployeeEntity reportsTo;
 
+    @OneToMany(fetch= FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="supportRep")
+    private List<CustomerEntity> customerEntities;
+
+    @Column(name="first_name")
     private String firstName;
+
+    @Column(name="last_name")
     private String lastName;
+
     private String title;
+
+    @Column(name="birth_date")
     private Date birthDate;
+
+    @Column(name="hire_date")
     private Date hireDate;
+
     private String address;
     private String city;
     private String state;
     private String country;
+
+    @Column(name="postal_code")
     private String postalCode;
+
     private String phone;
     private String fax;
     private String email;
@@ -37,20 +64,28 @@ public class EmployeeEntity extends BaseEntity {
     public EmployeeEntity() {
     }
 
-    public Integer getEmployeeId() {
+    public long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Integer employeeId) {
+    public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
     }
 
-    public Integer getReportsTo() {
+    public EmployeeEntity getReportsTo() {
         return reportsTo;
     }
 
-    public void setReportsTo(Integer reportsTo) {
+    public void setReportsTo(EmployeeEntity reportsTo) {
         this.reportsTo = reportsTo;
+    }
+
+    public List<CustomerEntity> getCustomerEntities() {
+        return customerEntities;
+    }
+
+    public void setCustomerEntities(List<CustomerEntity> customerEntities) {
+        this.customerEntities = customerEntities;
     }
 
     public String getFirstName() {

@@ -1,9 +1,11 @@
 package org.gislers.chinook.persistence.entities;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by:   jim
@@ -15,17 +17,19 @@ public class PlaylistEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer playlistId;
+    @Column(name="playlist_id")
+    private long playlistId;
+
     private String  name;
 
     public PlaylistEntity() {
     }
 
-    public Integer getPlaylistId() {
+    public long getPlaylistId() {
         return playlistId;
     }
 
-    public void setPlaylistId(Integer playlistId) {
+    public void setPlaylistId(long playlistId) {
         this.playlistId = playlistId;
     }
 
@@ -35,36 +39,5 @@ public class PlaylistEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("PlaylistEntity{");
-        sb.append("playlistId=").append(playlistId);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlaylistEntity playlistEntity = (PlaylistEntity) o;
-
-        return new EqualsBuilder()
-                .append(playlistId, playlistEntity.playlistId)
-                .append(name, playlistEntity.name)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(playlistId)
-                .append(name)
-                .toHashCode();
     }
 }

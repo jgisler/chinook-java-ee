@@ -21,7 +21,7 @@ abstract class AbstractDaoImpl<T extends BaseEntity> {
         this.clazz = clazzToSet;
     }
 
-    public T findOne( int id ){
+    public T findOne( long id ){
         return entityManager.find( clazz, id );
     }
 
@@ -45,7 +45,7 @@ abstract class AbstractDaoImpl<T extends BaseEntity> {
         entityManager.remove( t );
     }
 
-    public void deleteById( int entityId ){
+    public void deleteById( long entityId ){
         T entity = findOne( entityId );
         delete( entity );
     }

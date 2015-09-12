@@ -1,9 +1,11 @@
 package org.gislers.chinook.persistence.entities;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 /**
@@ -16,25 +18,32 @@ public class TrackEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer     trackId;
+    @Column(name="track_id")
+    private long trackId;
 
-    private String      name;
-    private Integer     albumId;
-    private Integer     mediaTypeId;
-    private Integer     genreId;
-    private String      composer;
-    private Integer     milliseconds;
-    private Integer     bytes;
-    private BigDecimal  unitPrice;
+    @Column(name="album_id")
+    private long albumId;
+
+    @Column(name="media_type_id")
+    private long mediaTypeId;
+
+    @Column(name="genre_id")
+    private long genreId;
+
+    private String name;
+    private String  composer;
+    private Integer milliseconds;
+    private Integer bytes;
+    private BigDecimal unitPrice;
 
     public TrackEntity() {
     }
 
-    public Integer getTrackId() {
+    public long getTrackId() {
         return trackId;
     }
 
-    public void setTrackId(Integer trackId) {
+    public void setTrackId(long trackId) {
         this.trackId = trackId;
     }
 
@@ -46,27 +55,27 @@ public class TrackEntity extends BaseEntity {
         this.name = name;
     }
 
-    public Integer getAlbumId() {
+    public long getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(Integer albumId) {
+    public void setAlbumId(long albumId) {
         this.albumId = albumId;
     }
 
-    public Integer getMediaTypeId() {
+    public long getMediaTypeId() {
         return mediaTypeId;
     }
 
-    public void setMediaTypeId(Integer mediaTypeId) {
+    public void setMediaTypeId(long mediaTypeId) {
         this.mediaTypeId = mediaTypeId;
     }
 
-    public Integer getGenreId() {
+    public long getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(Integer genreId) {
+    public void setGenreId(long genreId) {
         this.genreId = genreId;
     }
 
@@ -100,57 +109,5 @@ public class TrackEntity extends BaseEntity {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("TrackEntity{");
-        sb.append("trackId=").append(trackId);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", albumId=").append(albumId);
-        sb.append(", mediaTypeId=").append(mediaTypeId);
-        sb.append(", genreId=").append(genreId);
-        sb.append(", composer='").append(composer).append('\'');
-        sb.append(", milliseconds=").append(milliseconds);
-        sb.append(", bytes=").append(bytes);
-        sb.append(", unitPrice=").append(unitPrice);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TrackEntity trackEntity = (TrackEntity) o;
-
-        return new EqualsBuilder()
-                .append(trackId, trackEntity.trackId)
-                .append(name, trackEntity.name)
-                .append(albumId, trackEntity.albumId)
-                .append(mediaTypeId, trackEntity.mediaTypeId)
-                .append(genreId, trackEntity.genreId)
-                .append(composer, trackEntity.composer)
-                .append(milliseconds, trackEntity.milliseconds)
-                .append(bytes, trackEntity.bytes)
-                .append(unitPrice, trackEntity.unitPrice)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(trackId)
-                .append(name)
-                .append(albumId)
-                .append(mediaTypeId)
-                .append(genreId)
-                .append(composer)
-                .append(milliseconds)
-                .append(bytes)
-                .append(unitPrice)
-                .toHashCode();
     }
 }
