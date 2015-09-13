@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>chinook-db</artifactId>
+    <version>${project.parent.version}</version>
 
     <properties>
         <sql.directory>${project.basedir}/src/main/resources/sql</sql.directory>

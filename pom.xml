@@ -14,10 +14,11 @@
     <description>Java EE project using Test database Chinook</description>
 
     <modules>
-        <module>chinook-db</module>
-        <module>chinook-rest-api</module>
+        <!--<module>chinook-db</module>-->
+        <!--<module>chinook-rest-api</module>-->
         <module>chinook-persistence</module>
-        <module>chinook-service-ejb</module>
+        <module>chinook-service</module>
+        <module>chinook-service-ear</module>
     </modules>
 
     <scm>
@@ -99,6 +100,19 @@
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
                 <version>7.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.gislers.chinook</groupId>
+                <artifactId>chinook-persistence</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.gislers.chinook</groupId>
+                <artifactId>chinook-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <type>ejb</type>
             </dependency>
 
             <!--Spring dependencies-->

@@ -1,0 +1,7 @@
+<bean class="org.springframework.context.annotation.AnnotationConfigApplicationContext">
+    <constructor-arg>
+        <list>
+            <value type="java.lang.Class">org.gislers.chinook.persistence.config.PersistenceConfig</value>
+        </list>
+    </constructor-arg>
+</bean>

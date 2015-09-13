@@ -12,29 +12,12 @@
     </parent>
 
     <artifactId>chinook-persistence</artifactId>
-    <packaging>ejb</packaging>
+    <packaging>jar</packaging>
 
     <properties />
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ejb-plugin</artifactId>
-                <configuration>
-                    <ejbVersion>3.1</ejbVersion>
-                    <ejbJar>${project.artifactId}</ejbJar>
-                    <generateClient>true</generateClient>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>create-ejb-jar</id>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 
     <dependencies>
