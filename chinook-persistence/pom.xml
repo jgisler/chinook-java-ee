@@ -22,11 +22,28 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
+                <configuration>
+                    <ejbVersion>3.1</ejbVersion>
+                    <ejbJar>${project.artifactId}</ejbJar>
+                    <generateClient>true</generateClient>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-ejb-jar</id>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -48,6 +65,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

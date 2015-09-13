@@ -14,7 +14,7 @@ abstract class AbstractDaoImpl<T extends BaseEntity> {
 
     private Class<T> clazz;
 
-    @PersistenceContext
+    @PersistenceContext(unitName="chinook.jpa")
     EntityManager entityManager;
 
     final void setClazz( Class< T > clazzToSet ){

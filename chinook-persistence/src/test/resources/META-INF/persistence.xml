@@ -2,10 +2,10 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="chinook.jpa" transaction-type="JTA">
+    <persistence-unit name="chinook.jpa" transaction-type="RESOURCE_LOCAL">
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/comp/env/jdbc/ChinookDS</jta-data-source>
+        <non-jta-data-source>java:/comp/env/jdbc/ChinookDS</non-jta-data-source>
 
         <class>org.gislers.chinook.persistence.entities.AlbumEntity</class>
         <class>org.gislers.chinook.persistence.entities.ArtistEntity</class>
