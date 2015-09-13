@@ -1,5 +1,6 @@
 package org.gislers.chinook.persistence.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by:   jim
@@ -22,6 +25,7 @@ public class InvoiceEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="invoice_id")
     private long invoiceId;
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -45,6 +49,9 @@ public class InvoiceEntity extends BaseEntity {
 
     private BigDecimal total;
 
+    @OneToMany(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="invoiceEntity")
+    private List<InvoiceLineEntity> invoiceLineEntities;
+
     public InvoiceEntity() {
     }
 
@@ -62,6 +69,14 @@ public class InvoiceEntity extends BaseEntity {
 
     public void setCustomerEntity(CustomerEntity customerEntity) {
         this.customerEntity = customerEntity;
+    }
+
+    public List<InvoiceLineEntity> getInvoiceLineEntities() {
+        return invoiceLineEntities;
+    }
+
+    public void setInvoiceLineEntities(List<InvoiceLineEntity> invoiceLineEntities) {
+        this.invoiceLineEntities = invoiceLineEntities;
     }
 
     public Date getInvoiceDate() {

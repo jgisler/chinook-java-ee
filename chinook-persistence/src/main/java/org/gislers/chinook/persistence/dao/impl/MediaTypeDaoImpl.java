@@ -1,7 +1,7 @@
 package org.gislers.chinook.persistence.dao.impl;
 
-import org.gislers.chinook.persistence.dao.InvoiceLineDao;
-import org.gislers.chinook.persistence.entities.InvoiceLineEntity;
+import org.gislers.chinook.persistence.dao.MediaTypeDao;
+import org.gislers.chinook.persistence.entities.MediaTypeEntity;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
  * Created date: 9/10/15
  */
 @Repository
-public class MediaTypeDaoImpl extends AbstractDaoImpl<InvoiceLineEntity> implements InvoiceLineDao {
+public class MediaTypeDaoImpl extends AbstractDaoImpl<MediaTypeEntity> implements MediaTypeDao {
 
     public MediaTypeDaoImpl() {
-        setClazz( InvoiceLineEntity.class );
+        setClazz( MediaTypeEntity.class );
     }
 
 }

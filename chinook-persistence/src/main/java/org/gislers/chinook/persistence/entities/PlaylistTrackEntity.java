@@ -2,9 +2,12 @@ package org.gislers.chinook.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,11 +23,13 @@ public class PlaylistTrackEntity extends BaseEntity {
     @Column(name="playlist_track_id")
     private long playlistTrackId;
 
-    @Column(name="playlist_id")
-    private long playlistId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="playlist_id")
+    private PlaylistEntity playlistEntity;
 
-    @Column(name="track_id")
-    private long trackId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="track_id")
+    private TrackEntity trackEntity;
 
     public PlaylistTrackEntity() {
     }
@@ -37,19 +42,19 @@ public class PlaylistTrackEntity extends BaseEntity {
         this.playlistTrackId = playlistTrackId;
     }
 
-    public long getPlaylistId() {
-        return playlistId;
+    public PlaylistEntity getPlaylistEntity() {
+        return playlistEntity;
     }
 
-    public void setPlaylistId(long playlistId) {
-        this.playlistId = playlistId;
+    public void setPlaylistEntity(PlaylistEntity playlistEntity) {
+        this.playlistEntity = playlistEntity;
     }
 
-    public long getTrackId() {
-        return trackId;
+    public TrackEntity getTrackEntity() {
+        return trackEntity;
     }
 
-    public void setTrackId(long trackId) {
-        this.trackId = trackId;
+    public void setTrackEntity(TrackEntity trackEntity) {
+        this.trackEntity = trackEntity;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes=PersistenceConfig.class)
 @TestExecutionListeners(listeners = {
         DependencyInjectionTestExecutionListener.class,
-        TransactionalTestExecutionListener.class
+        TransactionalTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class,
 })
 @Transactional
 public abstract class BaseDaoImplTest {

@@ -1,5 +1,6 @@
 package org.gislers.chinook.persistence.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * Created by:   jim
@@ -22,11 +25,15 @@ public class AlbumEntity extends BaseEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="album_id")
     private long albumId;
+
     private String title;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="artist_id")
     private ArtistEntity artistEntity;
+
+    @OneToMany(fetch= FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="mediaTypeEntity")
+    private List<TrackEntity> trackEntities;
 
     public AlbumEntity() {
     }

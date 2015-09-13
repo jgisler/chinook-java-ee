@@ -1,8 +1,5 @@
 package org.gislers.chinook.persistence.entities;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,7 +28,11 @@ public class EmployeeEntity extends BaseEntity {
     private long employeeId;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    private EmployeeEntity reportsTo;
+    @JoinColumn(name="reports_to")
+    private EmployeeEntity manager;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="manager")
+    private List<EmployeeEntity> subordinates;
 
     @OneToMany(fetch= FetchType.LAZY, cascade= CascadeType.ALL, mappedBy="supportRep")
     private List<CustomerEntity> customerEntities;
@@ -72,12 +74,12 @@ public class EmployeeEntity extends BaseEntity {
         this.employeeId = employeeId;
     }
 
-    public EmployeeEntity getReportsTo() {
-        return reportsTo;
+    public EmployeeEntity getManager() {
+        return manager;
     }
 
-    public void setReportsTo(EmployeeEntity reportsTo) {
-        this.reportsTo = reportsTo;
+    public void setManager(EmployeeEntity manager) {
+        this.manager = manager;
     }
 
     public List<CustomerEntity> getCustomerEntities() {
@@ -192,73 +194,11 @@ public class EmployeeEntity extends BaseEntity {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("EmployeeEntity{");
-        sb.append("employeeId=").append(employeeId);
-        sb.append(", reportsTo=").append(reportsTo);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", birthDate=").append(birthDate);
-        sb.append(", hireDate=").append(hireDate);
-        sb.append(", address='").append(address).append('\'');
-        sb.append(", city='").append(city).append('\'');
-        sb.append(", state='").append(state).append('\'');
-        sb.append(", country='").append(country).append('\'');
-        sb.append(", postalCode='").append(postalCode).append('\'');
-        sb.append(", phone='").append(phone).append('\'');
-        sb.append(", fax='").append(fax).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append('}');
-        return sb.toString();
+    public List<EmployeeEntity> getSubordinates() {
+        return subordinates;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        EmployeeEntity employeeEntity = (EmployeeEntity) o;
-
-        return new EqualsBuilder()
-                .append(employeeId, employeeEntity.employeeId)
-                .append(reportsTo, employeeEntity.reportsTo)
-                .append(firstName, employeeEntity.firstName)
-                .append(lastName, employeeEntity.lastName)
-                .append(title, employeeEntity.title)
-                .append(birthDate, employeeEntity.birthDate)
-                .append(hireDate, employeeEntity.hireDate)
-                .append(address, employeeEntity.address)
-                .append(city, employeeEntity.city)
-                .append(state, employeeEntity.state)
-                .append(country, employeeEntity.country)
-                .append(postalCode, employeeEntity.postalCode)
-                .append(phone, employeeEntity.phone)
-                .append(fax, employeeEntity.fax)
-                .append(email, employeeEntity.email)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(employeeId)
-                .append(reportsTo)
-                .append(firstName)
-                .append(lastName)
-                .append(title)
-                .append(birthDate)
-                .append(hireDate)
-                .append(address)
-                .append(city)
-                .append(state)
-                .append(country)
-                .append(postalCode)
-                .append(phone)
-                .append(fax)
-                .append(email)
-                .toHashCode();
+    public void setSubordinates(List<EmployeeEntity> subordinates) {
+        this.subordinates = subordinates;
     }
 }

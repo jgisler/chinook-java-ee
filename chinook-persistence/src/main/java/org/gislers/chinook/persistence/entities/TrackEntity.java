@@ -2,9 +2,12 @@ package org.gislers.chinook.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -21,19 +24,24 @@ public class TrackEntity extends BaseEntity {
     @Column(name="track_id")
     private long trackId;
 
-    @Column(name="album_id")
-    private long albumId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="album_id")
+    private AlbumEntity albumEntity;
 
-    @Column(name="media_type_id")
-    private long mediaTypeId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="media_type_id")
+    private MediaTypeEntity mediaTypeEntity;
 
-    @Column(name="genre_id")
-    private long genreId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="genre_id")
+    private GenreEntity genreEntity;
 
     private String name;
     private String  composer;
     private Integer milliseconds;
     private Integer bytes;
+
+    @Column(name="unit_price")
     private BigDecimal unitPrice;
 
     public TrackEntity() {
@@ -53,30 +61,6 @@ public class TrackEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public long getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(long albumId) {
-        this.albumId = albumId;
-    }
-
-    public long getMediaTypeId() {
-        return mediaTypeId;
-    }
-
-    public void setMediaTypeId(long mediaTypeId) {
-        this.mediaTypeId = mediaTypeId;
-    }
-
-    public long getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(long genreId) {
-        this.genreId = genreId;
     }
 
     public String getComposer() {
@@ -109,5 +93,29 @@ public class TrackEntity extends BaseEntity {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public AlbumEntity getAlbumEntity() {
+        return albumEntity;
+    }
+
+    public void setAlbumEntity(AlbumEntity albumEntity) {
+        this.albumEntity = albumEntity;
+    }
+
+    public MediaTypeEntity getMediaTypeEntity() {
+        return mediaTypeEntity;
+    }
+
+    public void setMediaTypeEntity(MediaTypeEntity mediaTypeEntity) {
+        this.mediaTypeEntity = mediaTypeEntity;
+    }
+
+    public GenreEntity getGenreEntity() {
+        return genreEntity;
+    }
+
+    public void setGenreEntity(GenreEntity genreEntity) {
+        this.genreEntity = genreEntity;
     }
 }

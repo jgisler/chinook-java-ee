@@ -2,9 +2,12 @@ package org.gislers.chinook.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -21,13 +24,17 @@ public class InvoiceLineEntity extends BaseEntity {
     @Column(name="invoice_line_id")
     private long invoiceLineId;
 
-    @Column(name="invoice_id")
-    private long invoiceId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="track_id")
+    private TrackEntity trackEntity;
 
-    @Column(name="track_id")
-    private long trackId;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="invoice_id")
+    private InvoiceEntity invoiceEntity;
 
+    @Column(name="unit_price")
     private BigDecimal unitPrice;
+
     private int quantity;
 
     public InvoiceLineEntity() {
@@ -41,20 +48,20 @@ public class InvoiceLineEntity extends BaseEntity {
         this.invoiceLineId = invoiceLineId;
     }
 
-    public long getInvoiceId() {
-        return invoiceId;
+    public TrackEntity getTrackEntity() {
+        return trackEntity;
     }
 
-    public void setInvoiceId(long invoiceId) {
-        this.invoiceId = invoiceId;
+    public void setTrackEntity(TrackEntity trackEntity) {
+        this.trackEntity = trackEntity;
     }
 
-    public long getTrackId() {
-        return trackId;
+    public InvoiceEntity getInvoiceEntity() {
+        return invoiceEntity;
     }
 
-    public void setTrackId(long trackId) {
-        this.trackId = trackId;
+    public void setInvoiceEntity(InvoiceEntity invoiceEntity) {
+        this.invoiceEntity = invoiceEntity;
     }
 
     public BigDecimal getUnitPrice() {
@@ -65,11 +72,11 @@ public class InvoiceLineEntity extends BaseEntity {
         this.unitPrice = unitPrice;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }
