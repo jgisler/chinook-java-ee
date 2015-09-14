@@ -16,7 +16,7 @@ public class JndiDatasourceHelper {
             InitialContext ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup("jdbc."+DS_NAME);
             // rebind for alias if needed
-            ctx.rebind("jdbc/" + DS_NAME, ds);
+            ctx.rebind("java:/comp/env/jdbc/" + DS_NAME, ds);
         }
         catch (Exception ex) {
             ex.printStackTrace();

@@ -7,6 +7,7 @@ import org.gislers.chinook.service.dto.Artist;
 import org.gislers.chinook.service.exceptions.ChinookServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
+import org.springframework.stereotype.Component;
 
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
@@ -15,6 +16,7 @@ import javax.interceptor.Interceptors;
  * Created by jim
  * Created on 9/13/15.
  */
+@Component
 @Stateless(mappedName="ejb/ArtistService")
 @Interceptors(SpringBeanAutowiringInterceptor.class)
 public class ArtistServiceBean implements ArtistService {

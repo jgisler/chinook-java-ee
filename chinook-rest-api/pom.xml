@@ -6,24 +6,40 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>chinook-java-ee</artifactId>
         <groupId>org.gislers.chinook</groupId>
+        <artifactId>chinook-java-ee</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>chinook-rest-api</artifactId>
     <packaging>war</packaging>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <webXml>src/main/resources/WEB-INF/web.xml</webXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
 
         <dependency>
-            <groupId>org.gislers.chinook</groupId>
-            <artifactId>chinook-persistence</artifactId>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.gislers.chinook</groupId>
             <artifactId>chinook-service</artifactId>
+            <type>ejb</type>
         </dependency>
 
         <dependency>
@@ -69,11 +85,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-mxj</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

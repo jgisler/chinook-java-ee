@@ -1,8 +1,9 @@
 package org.gislers.chinook.rest.controller;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import org.gislers.chinook.service.dto.Album;
 import org.gislers.chinook.service.dto.Artist;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +16,11 @@ import static org.junit.Assert.assertNotNull;
  * Created date: 9/9/15
  */
 @Ignore
-public class AlbumControllerTest { //extends BaseControllerTest{
+public class AlbumControllerTest extends BaseControllerTest{
 
     @Autowired
     private AlbumController albumController;
 
-    @Ignore
     @Test
     public void testGetAlbumById() throws Exception {
         ResponseEntity<Album> responseEntity = albumController.getAlbumById(1);

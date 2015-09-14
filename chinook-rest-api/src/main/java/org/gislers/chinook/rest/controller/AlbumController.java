@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.ejb.EJB;
+
 /**
  * Created by:   jgisle
  * Created date: 9/8/15
@@ -20,6 +22,7 @@ public class AlbumController {
 
     private AlbumService albumService;
 
+    @EJB
     @Autowired
     public void setAlbumService(AlbumService albumService) {
         this.albumService = albumService;
