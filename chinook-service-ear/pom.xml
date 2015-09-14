@@ -25,14 +25,10 @@
                 <configuration>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules>
-                        <ejbModule>
+                        <module>
                             <groupId>org.gislers.chinook</groupId>
                             <artifactId>chinook-service</artifactId>
-                        </ejbModule>
-                        <warModule>
-                            <groupId>org.gislers.chinook</groupId>
-                            <artifactId>chinook-rest-api</artifactId>
-                        </warModule>
+                        </module>
                     </modules>
                     <generateApplicationXml>true</generateApplicationXml>
                 </configuration>
@@ -50,11 +46,6 @@
         <dependency>
             <groupId>org.gislers.chinook</groupId>
             <artifactId>chinook-service</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.gislers.chinook</groupId>
-            <artifactId>chinook-rest-api</artifactId>
         </dependency>
 
     </dependencies>
