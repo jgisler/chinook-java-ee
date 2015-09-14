@@ -39,7 +39,6 @@
         <dependency>
             <groupId>org.gislers.chinook</groupId>
             <artifactId>chinook-service</artifactId>
-            <type>ejb</type>
         </dependency>
 
         <dependency>

@@ -9,10 +9,10 @@
         <groupId>org.gislers.chinook</groupId>
         <artifactId>chinook-java-ee</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>chinook-db</artifactId>
-    <version>${project.parent.version}</version>
 
     <properties>
         <sql.directory>${project.basedir}/src/main/resources/sql</sql.directory>
@@ -34,7 +34,7 @@
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306</url>
                     <username>root</username>
-                    <password>****</password>
+                    <password>admin</password>
                 </configuration>
                 <executions>
 
